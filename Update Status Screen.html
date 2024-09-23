@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Update Status</h1>
+
+<div class="section">
+    <p><label>Current Status:</label> <span id="currentStatusDisplay">In Progress</span></p>
+</div>
+
+<div class="section">
+    <label for="newStatus">New Status</label>
+    <select id="newStatus" required>
+        <option value="" disabled selected>Select new status</option>
+        <option value="New">New</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Hired">Hired</option>
+        <option value="Rejected">Rejected</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+
+<div class="section">
+    <label for="notes">Notes</label>
+    <textarea id="notes" placeholder="Enter any notes" rows="4"></textarea>
+</div>
+
+<button id="saveStatusBtn">Save Status</button>
+
+<script>
+    document.getElementById('saveStatusBtn').addEventListener('click', function() {
+        const newStatus = document.getElementById('newStatus').value;
+        const notes = document.getElementById('notes').value;
+        
+        if (newStatus) {
+            // Logic to save the new status and update the status history
+            alert(`Status updated to: ${newStatus}.\nNotes: ${notes}`);
+            // Here you would typically send the updated data to the server
+        } else {
+            alert('Please select a new status.');
+        }
+    });
+</script>
+
+</body>
+</html>

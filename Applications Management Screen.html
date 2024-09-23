@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+        .filters {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .filters label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filters select,
+        .filters input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .view-button {
+            background-color: #007bff;
+        }
+        .move-button {
+            background-color: #28a745;
+        }
+        .reject-button {
+            background-color: #dc3545;
+        }
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+        .move-button:hover {
+            background-color: #218838;
+        }
+        .reject-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="filters">
+            <label for="job-title">Job Title</label>
+            <select id="job-title">
+                <option value="">Select job title</option>
+                <!-- Options will be dynamically populated -->
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+            </select>
+            
+            <label for="status">Status</label>
+            <select id="status">
+                <option value="">Select status</option>
+                <option value="applied">Applied</option>
+                <option value="in-review">In Review</option>
+                <option value="interview">Interview</option>
+                <option value="offered">Offered</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            
+            <label for="date-range">Date Applied</label>
+            <input type="date" id="date-from" placeholder="Select start date">
+            <input type="date" id="date-to" placeholder="Select end date">
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Applicant Name</th>
+                    <th>Job Title</th>
+                    <th>Status</th>
+                    <th>Date Applied</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Developer</td>
+                    <td>In Review</td>
+                    <td>2024-09-01</td>
+                    <td class="actions">
+                        <button class="view-button" onclick="location.href='Application Details Screen.html'">View</button>
+                        <button class="move-button" onclick="location.href='Job Categories Management Screen.html'">move to next stage</button>
+                        
+                        <button class="reject-button" onclick="rejectApplication('John Doe')">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Designer</td>
+                    <td>Applied</td>
+                    <td>2024-09-02</td>
+                    <td class="actions">
+                        <button class="view-button" onclick="location.href='Application Details Screen.html'">View</button>
+                        <button class="move-button" onclick="location.href='Job Categories Management Screen.html'">move to next stage</button>
+                        
+                        <button class="reject-button" onclick="rejectApplication('Jane Smith')">Reject</button>
+                    </td>
+                </tr>
+                <!-- More rows as needed -->
+            </tbody>
+        </table>
+         
+    </div>
+
+    <script>
+        
+        function viewApplication(applicantName) {
+            alert('View details for ' + applicantName);
+            // Redirect to the application details screen
+            // window.location.href = 'application_details.html';
+        }
+
+        function moveToNextStage(applicantName) {
+            alert('Move to next stage for ' + applicantName);
+            // Implement the functionality to move the application to the next stage
+        }
+
+        function rejectApplication(applicantName) {
+            alert('Reject application for ' + applicantName);
+            // Implement the functionality to reject the application
+        }
+    </script>
+</body>
+</html>

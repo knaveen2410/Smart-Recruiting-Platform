@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Creation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Creation Screen</h1>
+    <form id="jobForm">
+        <label for="department">Department</label>
+        <select id="department" required>
+            <option value="" disabled selected>Select a department</option>
+            <option value="HR">Human Resources</option>
+            <option value="IT">Information Technology</option>
+            <option value="Sales">Sales</option>
+            <option value="Marketing">Marketing</option>
+        </select>
+
+        <label for="jobLocation">Job Location</label>
+        <select id="jobLocation" required>
+            <option value="" disabled selected>Select a job location</option>
+            <option value="NY">New York</option>
+            <option value="SF">San Francisco</option>
+            <option value="LA">Los Angeles</option>
+            <option value="CHI">Chicago</option>
+        </select>
+
+        <label for="employmentType">Employment Type</label>
+        <select id="employmentType" required>
+            <option value="" disabled selected>Select employment type</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+        </select>
+        
+        <button type="submit">Create Job</button>
+    </form>
+
+    <script>
+        document.getElementById('jobForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (validateForm()) {
+                alert('Job created successfully!');
+                // Here you can add code to actually submit the form data, e.g., via AJAX
+            }
+        });
+
+        // Function to validate form fields
+        function validateForm() {
+            const department = document.getElementById('department').value;
+            const jobLocation = document.getElementById('jobLocation').value;
+            const employmentType = document.getElementById('employmentType').value;
+
+            // Check if any required fields are empty
+            if (!department || !jobLocation || !employmentType) {
+                alert('Please fill in all fields before proceeding.');
+                return false; // Validation failed
+            }
+            return true; // Validation succeeded
+        }
+    </script>
+</body>
+</html>

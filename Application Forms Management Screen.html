@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Forms Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Application Forms Management</h1>
+<button class="createNewFormBtn" onclick="location.href='form creation screen.html'">Create New Form</button>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Form Name</th>
+            <th>Associated Job</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="formList">
+        <!-- Example form entries -->
+        <tr>
+            <td>Job Application</td>
+            <td>Software Engineer</td>
+            <td><button class="edit" onclick="location.href='form editing screen.html'">Edit</button>
+                
+                <button onclick="deleteForm('Job Application')">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Internship Application</td>
+            <td>Data Analyst</td>
+            <td><button class="edit" onclick="location.href='form editing screen.html'">Edit</button>
+                
+                <button onclick="deleteForm('Internship Application')">Delete</button>
+            </td>
+        </tr>
+        <!-- More forms can be added here -->
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('createNewFormBtn').addEventListener('click', function() {
+        // Open form creation screen (replace with actual navigation)
+        alert('Opening form creation screen...');
+    });
+
+    function editForm(formName) {
+        // Open form editing screen with pre-filled details (replace with actual navigation)
+        alert('Editing form: ' + formName);
+    }
+
+    function deleteForm(formName) {
+        // Confirmation and deletion logic (replace with actual deletion)
+        if (confirm('Are you sure you want to delete the form: ' + formName + '?')) {
+            alert('Form ' + formName + ' deleted.');
+            // Code to remove the form from the table would go here
+        }
+    }
+</script>
+
+</body>
+</html>

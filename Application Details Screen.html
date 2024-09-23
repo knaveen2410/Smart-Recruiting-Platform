@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .section p,
+        .section select,
+        .section textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: inline-block;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .section a:hover {
+            background-color: #0056b3;
+        }
+        .button-group {
+            text-align: right;
+        }
+        .button-group button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .save-status {
+            background-color: #28a745;
+        }
+        .save-notes {
+            background-color: #007bff;
+        }
+        .save-status:hover {
+            background-color: #218838;
+        }
+        .save-notes:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Applicant Information Section -->
+        <div class="section">
+            <h2>Applicant Information</h2>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> john.doe@example.com</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <a href="resume_link.pdf" download>Resume</a> <!-- Replace 'resume_link.pdf' with actual resume link -->
+        </div>
+
+        <!-- Job Information Section -->
+        <div class="section">
+            <h2>Job Information</h2>
+            <p><strong>Job Title:</strong> Software Developer</p>
+            <p><strong>Department:</strong> Engineering</p>
+            <p><strong>Location:</strong> New York, NY</p>
+        </div>
+
+        <!-- Application Status Section -->
+        <div class="section">
+            <h2>Application Status</h2>
+            <p><strong>Current Status:</strong> In Review</p>
+            <label for="status">Change Status</label>
+            <select id="status">
+                <option value="applied">Applied</option>
+                <option value="in-review">In Review</option>
+                <option value="interview">Interview</option>
+                <option value="offered">Offered</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <div class="button-group">
+                <button class="save-status" onclick="saveStatus()">Save Status</button>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="section">
+            <h2>Notes</h2>
+            <label for="notes">Add notes about the application</label>
+            <textarea id="notes" rows="4" placeholder="Add notes about the application"></textarea>
+            <div class="button-group">
+                <button class="save-notes" onclick="saveNotes()">Save Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function loadApplicationDetails() {
+            const applicationId = getQueryParameter('id');
+            if (applicationId) {
+                // Simulate fetching and displaying application details
+                // In a real application, you would fetch details from the server using the applicationId
+                document.getElementById('application-details').innerHTML = `
+                    <p><strong>Application ID:</strong> ${applicationId}</p>
+                    <p>Loading details for application ID ${applicationId}...</p>
+                `;
+            } else {
+                console.error('No application ID found in URL.');
+                document.getElementById('application-details').innerHTML = '<p>Error: Application ID not provided.</p>';
+            }
+        }
+
+        window.onload = loadApplicationDetails;
+    </script>
+</body>
+</html>

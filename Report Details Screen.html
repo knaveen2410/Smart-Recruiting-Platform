@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Report Details</h1>
+
+<div class="section">
+    <h2>Report Information</h2>
+    <p><strong>Report Name:</strong> <span id="reportName">Sample Report</span></p>
+    <p><strong>Date Created:</strong> <span id="dateCreated">2024-01-01</span></p>
+    <p><strong>Created By:</strong> <span id="createdBy">John Doe</span></p>
+</div>
+
+<div class="section">
+    <h2>Report Data</h2>
+    <table id="reportDataTable">
+        <thead>
+            <tr>
+                <th>Applicant Name</th>
+                <th>Position</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jane Smith</td>
+                <td>Developer</td>
+                <td>2024-01-10</td>
+                <td>Hired</td>
+                <td>Job Board</td>
+            </tr>
+            <tr>
+                <td>Michael Johnson</td>
+                <td>Designer</td>
+                <td>2024-01-15</td>
+                <td>In Progress</td>
+                <td>Referral</td>
+            </tr>
+            <!-- More data rows can be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Actions</h2>
+    <button id="editReportBtn">Edit Report</button>
+    <button id="deleteReportBtn">Delete Report</button>
+    <button id="exportReportBtn">Export Report</button>
+</div>
+
+<script>
+    document.getElementById('editReportBtn').addEventListener('click', function() {
+        // Logic to open Edit Report screen
+        alert('Opening Edit Report screen...');
+    });
+
+    document.getElementById('deleteReportBtn').addEventListener('click', function() {
+        // Logic to delete the report
+        if (confirm('Are you sure you want to delete this report?')) {
+            alert('Report deleted.');
+            // Additional deletion logic here
+        }
+    });
+
+    document.getElementById('exportReportBtn').addEventListener('click', function() {
+        // Logic to export the report
+        alert('Exporting report in selected format...');
+    });
+</script>
+
+</body>
+</html>

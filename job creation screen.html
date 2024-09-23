@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Creation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 180vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group input.error, .form-group select.error {
+            border-color: #e74c3c;
+        }
+        .form-group .error-message {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 48%;
+            margin-right: 1%;
+            text-align: center;
+        }
+        .btn:last-child {
+            margin-right: 0;
+            background-color: #2ecc71;
+        }
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create a Job Posting</h2>
+        <form id="job-form">
+            <div class="form-group">
+                <label for="job-title">Job Title</label>
+                <input type="text" id="job-title" placeholder="Enter the job title" required>
+                <div class="error-message" id="job-title-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="job-description">Job Description</label>
+                <textarea id="job-description" placeholder="Enter the job description" required></textarea>
+                <div class="error-message" id="job-description-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" required>
+                    <option value="" disabled selected>Select a department</option>
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                </select>
+                <div class="error-message" id="department-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="job-location">Job Location</label>
+                <input type="text" id="job-location" placeholder="Enter the job location" required>
+                <div class="error-message" id="job-location-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="employment-type">Employment Type</label>
+                <select id="employment-type" required>
+                    <option value="" disabled selected>Select employment type</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                </select>
+                <div class="error-message" id="employment-type-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="salary-range">Salary Range</label>
+                <input type="text" id="salary-range" placeholder="Enter the salary range" required>
+                <div class="error-message" id="salary-range-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="application-deadline">Application Deadline</label>
+                <input type="date" id="application-deadline" required>
+                <div class="error-message" id="application-deadline-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="required-qualifications">Required Qualifications</label>
+                <textarea id="required-qualifications" placeholder="Enter the required qualifications" required></textarea>
+                <div class="error-message" id="required-qualifications-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="preferred-qualifications">Preferred Qualifications (Optional)</label>
+                <textarea id="preferred-qualifications" placeholder="Enter the preferred qualifications"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="responsibilities">Responsibilities</label>
+                <textarea id="responsibilities" placeholder="Enter the job responsibilities" required></textarea>
+                <div class="error-message" id="responsibilities-error"></div>
+            </div>
+            <div class="button-group">
+                
+
+                <a href="job draft screen.html"></a><button class="btn" id="save-draft-button">Save as Draft</button>
+                <a href="Published job screen.html"></a><button class="btn" id="Publish-button">Publish</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('job-form');
+        const jobTitleInput = document.getElementById('job-title');
+        const jobDescriptionInput = document.getElementById('job-description');
+        const departmentSelect = document.getElementById('department');
+        const jobLocationInput = document.getElementById('job-location');
+        const employmentTypeSelect = document.getElementById('employment-type');
+        const salaryRangeInput = document.getElementById('salary-range');
+        const applicationDeadlineInput = document.getElementById('application-deadline');
+        const requiredQualificationsInput = document.getElementById('required-qualifications');
+        const responsibilitiesInput = document.getElementById('responsibilities');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let valid = true;
+
+            // Clear previous error messages
+            const errorMessages = [
+                'job-title-error', 'job-description-error', 'department-error',
+                'job-location-error', 'employment-type-error', 'salary-range-error',
+                'application-deadline-error', 'required-qualifications-error',
+                'responsibilities-error'
+            ];
+            errorMessages.forEach(id => document.getElementById(id).textContent = '');
+
+            // Validate Job Title
+            if (jobTitleInput.value.trim() === '') {
+                document.getElementById('job-title-error').textContent = 'Job title is required.';
+                valid = false;
+            }
+
+            // Validate Job Description
+            if (jobDescriptionInput.value.trim().length < 50) {
+                document.getElementById('job-description-error').textContent = 'Job description must be at least 50 characters long.';
+                valid = false;
+            }
+
+            // Validate Department
+            if (departmentSelect.value === '') {
+                document.getElementById('department-error').textContent = 'Please select a department.';
+                valid = false;
+            }
+
+            // Validate Job Location
+            if (jobLocationInput.value.trim() === '') {
+                document.getElementById('job-location-error').textContent = 'Job location is required.';
+                valid = false;
+            }
+
+            // Validate Employment Type
+            if (employmentTypeSelect.value === '') {
+                document.getElementById('employment-type-error').textContent = 'Please select an employment type.';
+                valid = false;
+            }
+
+            // Validate Salary Range
+            if (salaryRangeInput.value.trim() === '' || isNaN(salaryRangeInput.value)) {
+                document.getElementById('salary-range-error').textContent = 'Salary range is required and must be numeric.';
+                valid = false;
+            }
+
+            // Validate Application Deadline
+            const today = new Date();
+            const deadline = new Date(applicationDeadlineInput.value);
+            if (applicationDeadlineInput.value === '' || deadline <= today) {
+                document.getElementById('application-deadline-error').textContent = 'Application deadline is required and must be a future date.';
+                valid = false;
+            }
+
+            // Validate Required Qualifications
+            if (requiredQualificationsInput.value.trim() === '') {
+                document.getElementById('required-qualifications-error').textContent = 'Required qualifications are mandatory.';
+                valid = false;
+            }
+
+            // Validate Responsibilities
+            if (responsibilitiesInput.value.trim() === '') {
+                document.getElementById('responsibilities-error').textContent = 'Responsibilities are required.';
+                valid = false;
+            }
+
+            if (valid) {
+                alert('Form is valid and ready to be submitted.');
+                window.location.href = 'published job screen.html'; 
+                // You can submit the form here or process it further
+            }
+        });
+
+        // Save as Draft Button
+        document.getElementById('save-draft-button').addEventListener('click', function () {
+            alert('Draft saved! (You can implement actual saving logic here)');
+            window.location.href = 'job draft screen.html';
+        });
+    </script>
+</body>
+</html>

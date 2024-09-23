@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Edit Form</h1>
+
+<div class="section">
+    <h2>Form Information</h2>
+    <label for="formName">Form Name</label>
+    <input type="text" id="formName" placeholder="Enter the form name" value="Example Form" required>
+
+    <label for="associatedJob">Associated Job</label>
+    <select id="associatedJob" required>
+        <option value="">Select a job</option>
+        <option value="Job 1" selected>Job 1</option>
+        <option value="Job 2">Job 2</option>
+    </select>
+</div>
+
+<div class="section">
+    <h2>Form Fields</h2>
+    <button id="addFieldBtn">Add Field</button>
+    <table id="fieldListTable" border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Field Name</th>
+                <th>Field Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Full Name</td>
+                <td>Textbox</td>
+                <td>
+                    <button class="editFieldBtn">Edit</button>
+                    <button class="deleteFieldBtn">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Application Date</td>
+                <td>Date Picker</td>
+                <td>
+                    <button class="editFieldBtn">Edit</button>
+                    <button class="deleteFieldBtn">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <button id="saveFormBtn">Save Form</button>
+</div>
+
+<script>
+    document.getElementById('saveFormBtn').addEventListener('click', function() {
+        // Logic to save the edited form
+        alert('Form details saved successfully!');
+    });
+
+    document.getElementById('addFieldBtn').addEventListener('click', function() {
+        // Logic to open modal for adding a new field
+        alert('Open modal to add a new field!');
+    });
+
+    // Example event handlers for editing and deleting fields
+    document.querySelectorAll('.editFieldBtn').forEach(button => {
+        button.addEventListener('click', function() {
+            alert('Open modal to edit field!');
+        });
+    });
+
+    document.querySelectorAll('.deleteFieldBtn').forEach(button => {
+        button.addEventListener('click', function() {
+            alert('Field deleted!');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .dashboard {
+            position: relative; /* For absolute positioning of hidden buttons */
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .toggle-dots {
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px; /* Space between dots and logo */
+        }
+        .dot {
+            line-height: 0.4; /* Make dots closer together */
+        }
+        .hidden-buttons {
+            display: none; /* Hide buttons by default */
+            position: absolute; /* Position buttons below dots */
+            top: 40px; /* Adjust for the dot height */
+            left: 10px; /* Align with dots */
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            padding: 8px 12px;
+            margin-top: 5px; /* Space between buttons */
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px; /* Space between header and summary */
+        }
+        .summary-item {
+            flex: 1;
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 0 10px;
+        }
+        h2 {
+            margin: 0 0 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Space between summary and table */
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        .view-all {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="toggle-dots" onclick="toggleButtons()">
+        <span class="dot">&#x2022;</span>
+        <span class="dot">&#x2022;</span>
+        <span class="dot">&#x2022;</span>
+    </div>
+    <img class="logo" src="data:image/png;base64,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" alt="Logo" style="margin-right: 2px;">
+    <h1>Dashboard</h1>
+    <div class="hidden-buttons" id="hiddenButtons">
+        <button class="button" onclick="location.href='Application forms Management screen.html'">Application</button>
+        <button class="button" onclick="location.href='Job(Integration with Categories).html'">Job Creation</button>
+        <button class="button" onclick="location.href='interview scheduling dashboard.html'">Interview</button>
+        <button class="button" onclick="location.href='notifications screen.html'">Notifications</button>
+        <button class="button" onclick="location.href='dashboard overview screen.html'">Overview</button>
+        <button class="button" onclick="location.href='custom reports dashboard.html'">Report</button>
+    </div>
+</div>
+
+<div class="summary">
+    <div class="summary-item">
+        <h2>Job Openings</h2>
+        <p>5</p> <!-- Replace with dynamic content -->
+    </div>
+    <div class="summary-item">
+        <h2>Applications</h2>
+        <p>20</p> <!-- Replace with dynamic content -->
+    </div>
+</div>
+
+<h2>Recent Applications</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Date Applied</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>Software Engineer</td>
+            <td>In Review</td>
+            <td>2024-09-15</td>
+            <td class="actions">
+                <button class="button">View</button>
+                <button class="button">Move to Next Stage</button>
+                <button class="button">Reject</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Jane Smith</td>
+            <td>Product Manager</td>
+            <td>Interview Scheduled</td>
+            <td>2024-09-14</td>
+            <td class="actions">
+                <button class="button">View</button>
+                <button class="button">Move to Next Stage</button>
+                <button class="button">Reject</button>
+            </td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+<button class="button view-all" onclick="location.href='Applications Management Screen.html'">View All Applications</button>
+
+<script>
+    function toggleButtons() {
+        const hiddenButtons = document.getElementById('hiddenButtons');
+        hiddenButtons.style.display = hiddenButtons.style.display === 'none' || hiddenButtons.style.display === '' ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>

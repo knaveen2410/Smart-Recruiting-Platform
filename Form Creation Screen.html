@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Creation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Form Creation</h1>
+
+<label for="formName">Form Name</label>
+<input type="text" id="formName" placeholder="Enter the form name" required>
+
+<label for="associatedJob">Associated Job</label>
+<select id="associatedJob" required>
+    <option value="" disabled selected>Select a job</option>
+    <option value="Software Engineer">Software Engineer</option>
+    <option value="Data Analyst">Data Analyst</option>
+    <option value="Product Manager">Product Manager</option>
+    <!-- Add more job options as needed -->
+</select>
+<button class="addFieldBtn" onclick="location.href='add field modal.html'">Add Field</button>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Field Name</th>
+            <th>Field Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="fieldList">
+        <!-- Dynamic field entries will be added here -->
+    </tbody>
+</table>
+
+<button id="saveFormBtn">Save Form</button>
+
+<!-- Modal for adding a new field -->
+<div id="addFieldModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" style="cursor:pointer; float:right;">&times;</span>
+        <h2>Add New Field</h2>
+        <label for="fieldName">Field Name</label>
+        <input type="text" id="fieldName" placeholder="Enter field name" required>
+
+        <label for="fieldType">Field Type</label>
+        <select id="fieldType" required>
+            <option value="" disabled selected>Select field type</option>
+            <option value="Text">Text</option>
+            <option value="Checkbox">Checkbox</option>
+            <option value="Dropdown">Dropdown</option>
+            <!-- Add more field types as needed -->
+        </select>
+
+        <button id="saveFieldBtn">Save Field</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('addFieldBtn').addEventListener('click', function() {
+        document.getElementById('addFieldModal').style.display = 'block';
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('addFieldModal').style.display = 'none';
+    });
+
+    document.getElementById('saveFieldBtn').addEventListener('click', function() {
+        const fieldName = document.getElementById('fieldName').value;
+        const fieldType = document.getElementById('fieldType').value;
+        
+        if (fieldName && fieldType) {
+            const fieldList = document.getElementById('fieldList');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${fieldName}</td>
+                <td>${fieldType}</td>
+                <td>
+                    <button onclick="editField(this)">Edit</button>
+                    <button onclick="deleteField(this)">Delete</button>
+                </td>
+            `;
+            fieldList.appendChild(newRow);
+            document.getElementById('addFieldModal').style.display = 'none';
+            document.getElementById('fieldName').value = '';
+            document.getElementById('fieldType').value = '';
+        }
+    });
+
+    function editField(button) {
+        const row = button.closest('tr');
+        const fieldName = row.cells[0].innerText;
+        const fieldType = row.cells[1].innerText;
+
+        document.getElementById('fieldName').value = fieldName;
+        document.getElementById('fieldType').value = fieldType;
+        // Additional edit functionality can be implemented here
+    }
+
+    function deleteField(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+
+    document.getElementById('saveFormBtn').addEventListener('click', function() {
+        // Logic to save the form can be implemented here
+        alert('Form saved successfully!');
+    });
+</script>
+
+</body>
+</html>

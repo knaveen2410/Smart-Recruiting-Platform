@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Interview Details</h1>
+
+<div class="section">
+    <h2>Applicant Information</h2>
+    <p><label>Name:</label> <span id="applicantName">Jane Doe</span></p>
+    <p><label>Email:</label> <span id="applicantEmail">jane.doe@example.com</span></p>
+    <p><label>Phone:</label> <span id="applicantPhone">123-456-7890</span></p>
+</div>
+
+<div class="section">
+    <h2>Job Information</h2>
+    <p><label>Job Title:</label> <span id="jobTitle">Software Engineer</span></p>
+    <p><label>Department:</label> <span id="department">Engineering</span></p>
+    <p><label>Location:</label> <span id="jobLocation">Remote</span></p>
+</div>
+
+<div class="section">
+    <h2>Interview Information</h2>
+    <p><label>Interview Date:</label> <span id="interviewDate">2024-09-25</span></p>
+    <p><label>Interview Time:</label> <span id="interviewTime">10:00 AM</span></p>
+    <p><label>Interview Mode:</label> <span id="interviewMode">In-Person</span></p>
+    <div id="interviewLocationContainer">
+        <p><label>Interview Location:</label> <span id="interviewLocation">123 Main St, Conference Room A</span></p>
+    </div>
+    <p><label>Interviewers:</label> <span id="interviewers">Interviewer 1, Interviewer 2</span></p>
+</div>
+
+<div class="actions">
+    <button id="rescheduleInterviewBtn">Reschedule Interview</button>
+    <button id="cancelInterviewBtn">Cancel Interview</button>
+</div>
+
+<script>
+    document.getElementById('rescheduleInterviewBtn').addEventListener('click', function() {
+        // Logic to open the Reschedule Interview screen
+        alert('Opening Reschedule Interview screen...');
+    });
+
+    document.getElementById('cancelInterviewBtn').addEventListener('click', function() {
+        if (confirm('Are you sure you want to cancel this interview?')) {
+            // Logic to cancel the interview (e.g., remove from the database)
+            alert('Interview has been canceled.');
+            // Optionally, redirect or refresh the page
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Field Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Button to open the modal -->
+<button id="addFieldBtn">Add Field</button>
+
+<!-- Modal for adding a new field -->
+<div id="addFieldModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" style="cursor:pointer; float:right;">&times;</span>
+        <h2>Add New Field</h2>
+        
+        <label for="fieldName">Field Name</label>
+        <input type="text" id="fieldName" placeholder="Enter the field name" required>
+
+        <label for="fieldType">Field Type</label>
+        <select id="fieldType" required>
+            <option value="" disabled selected>Select field type</option>
+            <option value="Textbox">Textbox</option>
+            <option value="Dropdown">Dropdown</option>
+            <option value="Checkbox">Checkbox</option>
+            <option value="Radio Button">Radio Button</option>
+            <option value="Date Picker">Date Picker</option>
+        </select>
+
+        <div id="fieldOptionsContainer" style="display: none;">
+            <label for="fieldOptions">Field Options</label>
+            <input type="text" id="fieldOptions" placeholder="Enter options separated by commas">
+        </div>
+
+        <button id="saveFieldBtn">Add Field</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('addFieldBtn').addEventListener('click', function() {
+        document.getElementById('addFieldModal').style.display = 'block';
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('addFieldModal').style.display = 'none';
+    });
+
+    document.getElementById('fieldType').addEventListener('change', function() {
+        const selectedType = this.value;
+        const optionsContainer = document.getElementById('fieldOptionsContainer');
+        const optionsInput = document.getElementById('fieldOptions');
+
+        if (selectedType === 'Dropdown' || selectedType === 'Checkbox' || selectedType === 'Radio Button') {
+            optionsContainer.style.display = 'block';
+        } else {
+            optionsContainer.style.display = 'none';
+            optionsInput.value = ''; // Clear options input
+        }
+    });
+
+    document.getElementById('saveFieldBtn').addEventListener('click', function() {
+        const fieldName = document.getElementById('fieldName').value;
+        const fieldType = document.getElementById('fieldType').value;
+        const fieldOptions = document.getElementById('fieldOptions').value;
+
+        if (fieldName && fieldType && (fieldType !== 'Dropdown' && fieldType !== 'Checkbox' && fieldType !== 'Radio Button' || fieldOptions)) {
+            const fieldList = document.getElementById('fieldList');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${fieldName}</td>
+                <td>${fieldType}${fieldOptions ? ' (' + fieldOptions + ')' : ''}</td>
+                <td>
+                    <button onclick="editField(this)">Edit</button>
+                    <button onclick="deleteField(this)">Delete</button>
+                </td>
+            `;
+            fieldList.appendChild(newRow);
+            document.getElementById('addFieldModal').style.display = 'none';
+            document.getElementById('fieldName').value = '';
+            document.getElementById('fieldType').value = '';
+            document.getElementById('fieldOptions').value = '';
+            document.getElementById('fieldOptionsContainer').style.display = 'none';
+        }
+    });
+
+    function editField(button) {
+        const row = button.closest('tr');
+        const fieldName = row.cells[0].innerText;
+        const fieldType = row.cells[1].innerText.split(' (')[0];
+        const fieldOptions = row.cells[1].innerText.includes(' (') ? row.cells[1].innerText.split(' (')[1].replace(')', '') : '';
+
+        document.getElementById('fieldName').value = fieldName;
+        document.getElementById('fieldType').value = fieldType;
+        document.getElementById('fieldOptions').value = fieldOptions;
+
+        const optionsContainer = document.getElementById('fieldOptionsContainer');
+        optionsContainer.style.display = (fieldType === 'Dropdown' || fieldType === 'Checkbox' || fieldType === 'Radio Button') ? 'block' : 'none';
+
+        document.getElementById('addFieldModal').style.display = 'block';
+    }
+
+    function deleteField(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+</script>
+
+</body>
+</html>

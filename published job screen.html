@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Published Jobs Screen</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Published Jobs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Department</th>
+                <th>Date Published</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example row 1 -->
+            <tr>
+                <td>Software Engineer</td>
+                <td>Engineering</td>
+                <td>2024-09-15</td>
+                <td class="actions">
+                    <button onclick="viewJob('1')">View</button>
+                    <button class="Edit" onclick="location.href='job (integration with Categories).html'">Edit</button>
+                    
+                    <button onclick="unpublishJob('1')">Unpublish</button>
+                </td>
+            </tr>
+            <!-- Example row 2 -->
+            <tr>
+                <td>Product Manager</td>
+                <td>Product</td>
+                <td>2024-09-16</td>
+                <td class="actions">
+                    <button onclick="viewJob('2')">View</button>
+                    <button onclick="editJob('2')">Edit</button>
+                    <button onclick="unpublishJob('2')">Unpublish</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function viewJob(jobId) {
+            // Implement the logic to open the job details screen
+            // For example: window.location.href = `view-job.html?id=${jobId}`;
+            console.log(`View job with ID: ${jobId}`);
+        }
+
+        function editJob(jobId) {
+            // Implement the logic to open the job creation screen with published job details pre-filled
+            // For example: window.location.href = `edit-job.html?id=${jobId}`;
+            console.log(`Edit job with ID: ${jobId}`);
+        }
+
+        function unpublishJob(jobId) {
+            // Implement the logic to unpublish the job posting
+            // For example, make an API call to unpublish the job
+            console.log(`Unpublish job with ID: ${jobId}`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Categories Management</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Job Categories Management</h1>
+
+        <form id="category-form">
+            <div class="form-group">
+                <label for="categoryType">Category Type</label>
+                <select id="categoryType" required>
+                    <option value="" disabled selected>Select category type</option>
+                    <option value="Department">Department</option>
+                    <option value="Location">Location</option>
+                    <option value="Employment Type">Employment Type</option>
+                </select>
+                <div class="error-message" id="type-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input type="text" id="categoryName" placeholder="Enter the category name" required>
+                <div class="error-message" id="name-error"></div>
+            </div>
+
+            <button type="submit" id="addCategoryBtn">Add Category</button>
+        </form>
+
+        <table id="categoriesList">
+            <thead>
+                <tr>
+                    <th>Category Type</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Categories will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    
+                
+                <button class="Edit" onclick="location.href='Category Editing Modal.html'">Edit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>

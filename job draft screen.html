@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Drafts Screen</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Drafts</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Department</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example row 1 -->
+            <tr>
+                <td>Software Engineer</td>
+                <td>Engineering</td>
+                <td>2024-09-15</td>
+                <td class="actions">
+                    <button class="Edit" >Edit</button>
+                    
+                    <button onclick="deleteJob('1')">Delete</button>
+                </td>
+            </tr>
+            <!-- Example row 2 -->
+            <tr>
+                <td>Product Manager</td>
+                <td>Product</td>
+                <td>2024-09-16</td>
+                <td class="actions">
+                    <button class="Edit" >Edit</button>
+                    
+                    <button onclick="deleteJob('2')">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function editJob(jobId) {
+            // Implement the logic to open the job creation screen with draft details pre-filled
+            window.location.href = 'job creation screen(integration with categories).html';
+            console.log(`Edit job with ID: ${jobId}`);
+        }
+
+        function deleteJob(jobId) {
+            // Implement the logic to delete the job draft
+            // For example, make an API call to delete the draft
+            console.log(`Delete job with ID: ${jobId}`);
+        }
+    </script>
+</body>
+</html>

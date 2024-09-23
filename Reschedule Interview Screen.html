@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reschedule Interview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Reschedule Interview</h1>
+
+<form id="rescheduleForm">
+    <label for="newInterviewDate">Interview Date</label>
+    <input type="date" id="newInterviewDate" placeholder="Select new interview date" required>
+
+    <label for="newInterviewTime">Interview Time</label>
+    <input type="time" id="newInterviewTime" placeholder="Select new interview time" required>
+
+    <button type="submit">Reschedule Interview</button>
+</form>
+
+<script>
+    document.getElementById('rescheduleForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const newDate = document.getElementById('newInterviewDate').value;
+        const newTime = document.getElementById('newInterviewTime').value;
+        
+        if (newDate && newTime) {
+            // Logic to handle rescheduling the interview (e.g., send data to server)
+            alert(`Interview rescheduled to ${newDate} at ${newTime}.`);
+            // Optionally, redirect or navigate back to the interview details screen
+        } else {
+            alert('Please fill out all fields.');
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Scheduling Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Interview Scheduling Dashboard</h1>
+
+<div>
+    <h2>Upcoming Interviews</h2>
+    <p id="upcomingInterviewsCount">Number of upcoming interviews: <strong>5</strong></p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Job Title</th>
+            <th>Interview Date</th>
+            <th>Interview Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="interviewsList">
+        <!-- Example interview entries -->
+        <tr>
+            <td>Jane Doe</td>
+            <td>Software Engineer</td>
+            <td>2024-09-25</td>
+            <td>10:00 AM</td>
+            <td>Scheduled</td>
+            <td>
+                <button class="view" onclick="location.href='interview details screen.html'">view</button>
+                <button class="rescheduleInterview(this)" onclick="location.href='reschedule interview screen.html'">Reschedule</button>
+                
+                <button onclick="cancelInterview(this)">Cancel</button>
+            </td>
+        </tr>
+        <tr>
+            <td>John Smith</td>
+            <td>Data Analyst</td>
+            <td>2024-09-26</td>
+            <td>2:00 PM</td>
+            <td>Scheduled</td>
+            <td>
+                <button class="view" onclick="location.href='interview details screen.html'">view</button>
+                <button class="rescheduleInterview(this)" onclick="location.href='reschedule interview screen.html'">Reschedule</button>
+                
+                <button onclick="cancelInterview(this)">Cancel</button>
+            </td>
+        </tr>
+        <!-- More interview entries can be added here -->
+    </tbody>
+</table>
+<button class="scheduleNewInterviewBtn" onclick="location.href='interview scheduling screen.html'">Schedule New Interview</button>
+
+
+<script>
+    document.getElementById('scheduleNewInterviewBtn').addEventListener('click', function() {
+        // Open the interview scheduling screen (replace with actual navigation)
+        alert('Opening interview scheduling screen...');
+    });
+
+    function viewInterview(button) {
+        const row = button.closest('tr');
+        const applicantName = row.cells[0].innerText;
+        // Open the Interview Details screen (replace with actual navigation)
+        alert('Viewing interview details for: ' + applicantName);
+    }
+
+    function rescheduleInterview(button) {
+        const row = button.closest('tr');
+        const applicantName = row.cells[0].innerText;
+        // Open the Reschedule Interview screen (replace with actual navigation)
+        alert('Rescheduling interview for: ' + applicantName);
+    }
+
+    function cancelInterview(button) {
+        const row = button.closest('tr');
+        const applicantName = row.cells[0].innerText;
+        if (confirm('Are you sure you want to cancel the interview for ' + applicantName + '?')) {
+            row.remove(); // Remove the interview entry
+            // Update the upcoming interviews count if needed
+            const count = document.getElementById('upcomingInterviewsCount');
+            const currentCount = parseInt(count.textContent.match(/\d+/)[0]) - 1;
+            count.innerHTML = `Number of upcoming interviews: <strong>${currentCount}</strong>`;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Scheduling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Schedule Interview</h1>
+
+<form id="interviewSchedulingForm">
+    <label for="applicantName">Applicant Name</label>
+    <select id="applicantName" required>
+        <option value="" disabled selected>Select applicant</option>
+        <option value="Jane Doe">Jane Doe</option>
+        <option value="John Smith">John Smith</option>
+        <option value="Alice Johnson">Alice Johnson</option>
+        <!-- More applicants can be added here -->
+    </select>
+
+    <label for="jobTitle">Job Title</label>
+    <select id="jobTitle" required>
+        <option value="" disabled selected>Select job title</option>
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="Data Analyst">Data Analyst</option>
+        <!-- More job titles can be added here -->
+    </select>
+
+    <label for="interviewDate">Interview Date</label>
+    <input type="date" id="interviewDate" required>
+
+    <label for="interviewTime">Interview Time</label>
+    <input type="time" id="interviewTime" required>
+
+    <label for="interviewers">Interviewers</label>
+    <select id="interviewers" multiple required>
+        <option value="Interviewer 1">Interviewer 1</option>
+        <option value="Interviewer 2">Interviewer 2</option>
+        <option value="Interviewer 3">Interviewer 3</option>
+        <!-- More interviewers can be added here -->
+    </select>
+
+    <label for="interviewMode">Interview Mode</label>
+    <select id="interviewMode" required>
+        <option value="" disabled selected>Select interview mode</option>
+        <option value="In-Person">In-Person</option>
+        <option value="Video Call">Video Call</option>
+        <option value="Phone Call">Phone Call</option>
+        <option value="Teams Call">Teams Call</option>
+    </select>
+
+    <div id="locationContainer" class="hidden">
+        <label for="interviewLocation">Interview Location</label>
+        <input type="text" id="interviewLocation" placeholder="Enter interview location" required>
+    </div>
+
+    <button type="submit">Schedule Interview</button>
+</form>
+
+<script>
+    document.getElementById('interviewMode').addEventListener('change', function() {
+        const locationContainer = document.getElementById('locationContainer');
+        if (this.value === 'In-Person') {
+            locationContainer.classList.remove('hidden');
+            document.getElementById('interviewLocation').required = true; // Set as required
+        } else {
+            locationContainer.classList.add('hidden');
+            document.getElementById('interviewLocation').required = false; // Remove required
+            document.getElementById('interviewLocation').value = ''; // Clear the input
+        }
+    });
+
+    document.getElementById('interviewSchedulingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        alert('Interview scheduled successfully!'); // Replace with actual scheduling logic
+        // Here you would typically handle form data submission to the server
+    });
+</script>
+
+</body>
+</html>

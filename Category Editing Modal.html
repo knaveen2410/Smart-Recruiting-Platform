@@ -1,0 +1,27 @@
+<!-- Modal for editing category -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Category</h2>
+        <form id="edit-category-form">
+            <div class="form-group">
+                <label for="editCategoryType">Category Type</label>
+                <select id="editCategoryType" required>
+                    <option value="" disabled selected>Select category type</option>
+                    <option value="Department">Department</option>
+                    <option value="Location">Location</option>
+                    <option value="Employment Type">Employment Type</option>
+                </select>
+                <div class="error-message" id="edit-type-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="editCategoryName">Category Name</label>
+                <input type="text" id="editCategoryName" placeholder="Enter the category name" required>
+                <div class="error-message" id="edit-name-error"></div>
+            </div>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>

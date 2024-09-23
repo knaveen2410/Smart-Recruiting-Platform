@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Application Details</h1>
+
+<div class="section">
+    <h2>Applicant Information</h2>
+    <p><label>Name:</label> <span id="applicantName">Jane Doe</span></p>
+    <p><label>Position:</label> <span id="positionApplied">Software Engineer</span></p>
+    <p><label>Source:</label> <span id="source">LinkedIn</span></p>
+    <p><label>Date Applied:</label> <span id="dateApplied">2024-09-10</span></p>
+</div>
+
+<div class="section">
+    <h2>Application Status</h2>
+    <p><label>Current Status:</label> <span id="currentStatus">In Progress</span></p>
+    <h3>Status History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="statusHistoryBody">
+            <tr>
+                <td>2024-09-11</td>
+                <td>Application Received</td>
+                <td>Initial review in progress</td>
+            </tr>
+            <tr>
+                <td>2024-09-12</td>
+                <td>In Progress</td>
+                <td>Interview scheduled</td>
+            </tr>
+            <!-- More history rows can be added here -->
+        </tbody>
+    </table>
+</div>
+
+<div class="actions">
+    <button class="updateStatusBtn" onclick="location.href='update status screen.html'">Update Status</button>
+    
+    <button id="sendMessageBtn">Send Message</button>
+</div>
+
+<script>
+    document.getElementById('updateStatusBtn').addEventListener('click', function() {
+        // Logic to open the Update Status screen
+        alert('Opening Update Status screen...');
+    });
+
+    document.getElementById('sendMessageBtn').addEventListener('click', function() {
+        // Logic to open the Compose Message screen
+        alert('Opening Compose Message screen...');
+    });
+</script>
+
+</body>
+</html>

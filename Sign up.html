@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group input.error {
+            border-color: #e74c3c;
+        }
+        .form-group .error-message {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .link {
+            display: block;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" placeholder="Enter your full name" required>
+                <div class="error-message" id="full-name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <div class="error-message" id="password-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
+                <div class="error-message" id="confirm-password-error"></div>
+            </div>
+            <button type="submit" class="btn" id="signup-button">Sign Up</button>
+            <div class="link">
+                <a href="login page.html">Back to Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signup-form');
+        const fullNameInput = document.getElementById('full-name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const signupButton = document.getElementById('signup-button');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let valid = true;
+
+            // Clear previous error messages
+            document.getElementById('full-name-error').textContent = '';
+            document.getElementById('email-error').textContent = '';
+            document.getElementById('password-error').textContent = '';
+            document.getElementById('confirm-password-error').textContent = '';
+
+            // Validate full name
+            if (fullNameInput.value.trim() === '') {
+                document.getElementById('full-name-error').textContent = 'Full name is required.';
+                valid = false;
+            }
+
+            // Validate email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+
+            // Validate password
+            if (passwordInput.value.length < 8) {
+                document.getElementById('password-error').textContent = 'Password must be at least 8 characters long.';
+                valid = false;
+            }
+
+            // Validate confirm password
+            if (confirmPasswordInput.value !== passwordInput.value) {
+                document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+                valid = false;
+            }
+
+            // If form is valid, proceed with submission (e.g., send data to server)
+            if (valid) {
+                alert('Registration successful!');
+                // Here you can add code to actually submit the form data
+            }
+        });
+
+        function toggleButtonState() {
+            signupButton.disabled = !(
+                fullNameInput.value.trim() !== '' &&
+                emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) &&
+                passwordInput.value.length >= 8 &&
+                confirmPasswordInput.value === passwordInput.value
+            );
+        }
+
+        fullNameInput.addEventListener('input', toggleButtonState);
+        emailInput.addEventListener('input', toggleButtonState);
+        passwordInput.addEventListener('input', toggleButtonState);
+        confirmPasswordInput.addEventListener('input', toggleButtonState);
+    </script>
+</body>
+</html>
